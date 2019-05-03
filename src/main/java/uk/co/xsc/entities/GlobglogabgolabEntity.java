@@ -7,9 +7,11 @@ import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.xsc.TestMod;
 
 public class GlobglogabgolabEntity extends PassiveEntity {
 
@@ -18,12 +20,25 @@ public class GlobglogabgolabEntity extends PassiveEntity {
     public GlobglogabgolabEntity(EntityType<? extends PassiveEntity> entityType_1, World world_1) {
         super(entityType_1, world_1);
         this.bossBar = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.NOTCHED_10);
+        this.bossBar.setVisible(true);
     }
 
     protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(500D);
+    }
+
+    @Override
+    public void onStartedTrackingBy(ServerPlayerEntity serverPlayerEntity) {
+        super.onStartedTrackingBy(serverPlayerEntity);
+        this.bossBar.addPlayer(serverPlayerEntity);
+    }
+
+    @Override
+    public void onStoppedTrackingBy(ServerPlayerEntity serverPlayerEntity) {
+        super.onStoppedTrackingBy(serverPlayerEntity);
+        this.bossBar.removePlayer(serverPlayerEntity);
     }
 
     @Override
@@ -54,7 +69,7 @@ public class GlobglogabgolabEntity extends PassiveEntity {
 
     @Override
     public PassiveEntity createChild(PassiveEntity var1) {
-        return null;
+        return TestMod.GLOBGLOGABGOLAB_ENTITY.create(this.world);
     }
 
 }
