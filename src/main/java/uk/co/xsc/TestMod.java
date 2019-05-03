@@ -1,7 +1,9 @@
 package uk.co.xsc;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.tag.FabricItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.*;
@@ -18,7 +20,7 @@ public class TestMod implements ModInitializer {
 
     public static final GlobglogabgolabItem GLOBGLOGABGOLAB_ITEM = new GlobglogabgolabItem(new Item.Settings().itemGroup(GLOBGLOGABGOLAB_GROUP));
 
-    public static final BasementWallBlock BASEMENT_WALL_BLOCK = new BasementWallBlock(Block.Settings.of(Material.STONE).friction(50));
+    public static final BasementWallBlock BASEMENT_WALL_BLOCK = new BasementWallBlock(FabricBlockSettings.of(Material.STONE).strength(5, 30).lightLevel(5).collidable(false).drops(new Identifier("test_mod", "globglogobgolab_item")).breakByTool(FabricItemTags.HOES).build());
 
     public static final GreetingGlobglogabgolabSound GREETING_GLOBGLOGABGOLAB_SOUND = new GreetingGlobglogabgolabSound(new Identifier("test_mod", "greeting_globglogabgolab_sound"));
 
