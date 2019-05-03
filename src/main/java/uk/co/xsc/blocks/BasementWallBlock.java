@@ -10,12 +10,6 @@ import net.minecraft.text.Style;
 import net.minecraft.text.TextFormat;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.loot.context.LootContext;
-import uk.co.xsc.TestMod;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class BasementWallBlock extends Block {
 
