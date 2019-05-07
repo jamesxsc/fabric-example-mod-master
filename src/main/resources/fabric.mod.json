@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "uk.co.xsc.TestMod"
+    ],
+    "client": [
+      "uk.co.xsc.ClientModInitializer"
     ]
   },
   "mixins": [
