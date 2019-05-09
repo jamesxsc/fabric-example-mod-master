@@ -16,6 +16,7 @@ import net.minecraft.util.registry.Registry;
 import uk.co.xsc.blocks.BasementWallBlock;
 import uk.co.xsc.entities.GlobglogabgolabEntity;
 import uk.co.xsc.items.GlobglogabgolabItem;
+import uk.co.xsc.registry.TestBlockEntities;
 import uk.co.xsc.sounds.GreetingGlobglogabgolabSound;
 
 @SuppressWarnings("WeakerAccess")
@@ -33,6 +34,8 @@ public class TestMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        TestBlockEntities.init();
+
         Registry.register(Registry.BLOCK, new Identifier("test_mod", "basement_wall_block"), BASEMENT_WALL_BLOCK);
 
         Registry.register(Registry.ITEM, new Identifier("test_mod", "basement_wall_block"), new BlockItem(BASEMENT_WALL_BLOCK, new Item.Settings().stackSize(11).itemGroup(GLOBGLOGABGOLAB_GROUP)));
