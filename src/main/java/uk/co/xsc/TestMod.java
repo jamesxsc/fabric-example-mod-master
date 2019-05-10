@@ -17,6 +17,7 @@ import uk.co.xsc.blocks.BasementWallBlock;
 import uk.co.xsc.entities.GlobglogabgolabEntity;
 import uk.co.xsc.items.GlobglogabgolabItem;
 import uk.co.xsc.registry.TestBlockEntities;
+import uk.co.xsc.registry.TestBlocks;
 import uk.co.xsc.sounds.GreetingGlobglogabgolabSound;
 
 @SuppressWarnings("WeakerAccess")
@@ -34,6 +35,7 @@ public class TestMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        TestBlocks.init();
         TestBlockEntities.init();
 
         Registry.register(Registry.BLOCK, new Identifier("test_mod", "basement_wall_block"), BASEMENT_WALL_BLOCK);
