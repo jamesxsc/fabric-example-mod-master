@@ -19,6 +19,7 @@ public class LargeFlightCaseBlockEntity extends LootableContainerBlockEntity {
 
     protected LargeFlightCaseBlockEntity(BlockEntityType<?> blockEntityType_1) {
         super(blockEntityType_1);
+        this.inventory = DefaultedList.create(54, ItemStack.EMPTY);
     }
 
     public LargeFlightCaseBlockEntity() {
