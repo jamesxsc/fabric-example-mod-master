@@ -7,13 +7,17 @@ import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.tag.FabricItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.container.Container;
+import net.minecraft.container.ContainerType;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import uk.co.xsc.blocks.BasementWallBlock;
+import uk.co.xsc.commands.CommandManager;
 import uk.co.xsc.entities.GlobglogabgolabEntity;
 import uk.co.xsc.items.GlobglogabgolabItem;
 import uk.co.xsc.registry.TestBlockEntities;
@@ -33,10 +37,16 @@ public class TestMod implements ModInitializer {
 
     public static final EntityType<GlobglogabgolabEntity> GLOBGLOGABGOLAB_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier("test_mod", "globglogabgolab"), FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, GlobglogabgolabEntity::new).size(EntitySize.constant(2,3)).build());
 
+    public static final Identifier FLIGHT_CASE_LARGE_CONTAINER = new Identifier("test_mod", "flight_case_large_container")
+
+
+    public static final CommandManager COMMAND_MANAGER = new CommandManager();
+
     @Override
     public void onInitialize() {
         TestBlocks.init();
         TestBlockEntities.init();
+        COMMAND_MANAGER.init();
 
         Registry.register(Registry.BLOCK, new Identifier("test_mod", "basement_wall_block"), BASEMENT_WALL_BLOCK);
 

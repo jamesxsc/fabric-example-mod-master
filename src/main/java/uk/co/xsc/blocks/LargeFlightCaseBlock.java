@@ -3,14 +3,16 @@ package uk.co.xsc.blocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tag.FabricBlockTags;
-import net.fabricmc.fabric.api.tag.FabricItemTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.container.Container;
+import net.minecraft.container.GenericContainer;
 import net.minecraft.container.NameableContainerProvider;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.VerticalEntityPosition;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.DoubleInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -20,9 +22,7 @@ import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.text.StringTextComponent;
-import net.minecraft.text.Style;
-import net.minecraft.text.TextFormat;
+import net.minecraft.text.*;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -67,7 +67,12 @@ public class LargeFlightCaseBlock extends HorizontalFacingBlock implements Block
 
             @Override
             public Inventory getFromLargeFlightCase(LargeFlightCaseBlockEntity flightCaseBlockEntity) {
-                return getInventory(flightCaseBlockEntity);
+                return new DoubleInventory(flightCaseBlockEntity,
+                        (LargeFlightCaseBlockEntity)
+                                flightCaseBlockEntity.getWorld()
+                                        .getBlockEntity(flightCaseBlockEntity.getPos()
+                                                .offset(getFacing(flightCaseBlockEntity.getWorld()
+                                                        .getBlockState(flightCaseBlockEntity.getPos())))));
             }
 
             @Override
@@ -83,7 +88,23 @@ public class LargeFlightCaseBlock extends HorizontalFacingBlock implements Block
         NAME_RETRIEVER = new FlightCasePropertyRetriever<NameableContainerProvider>() {
             @Override
             public NameableContainerProvider getFromLargeFlightCase(LargeFlightCaseBlockEntity flightCaseBlockEntity) {
-                return flightCaseBlockEntity;
+                final Inventory inventory = new DoubleInventory(flightCaseBlockEntity,
+                        (LargeFlightCaseBlockEntity)
+                                flightCaseBlockEntity.getWorld()
+                                        .getBlockEntity(flightCaseBlockEntity.getPos()
+                                                .offset(getFacing(flightCaseBlockEntity.getWorld()
+                                                        .getBlockState(flightCaseBlockEntity.getPos())))));
+                return new NameableContainerProvider() {
+                    @Override
+                    public TextComponent getDisplayName() {
+                        return new TranslatableTextComponent("container.flight-case.large");
+                    }
+
+                    @Override
+                    public Container createMenu(int var1, PlayerInventory var2, PlayerEntity var3) {
+                        return new GenericContainer(ContainerType.);
+                    }
+                }
             }
 
             @Override

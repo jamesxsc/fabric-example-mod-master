@@ -17,9 +17,10 @@ public class LargeFlightCaseBlockEntity extends LootableContainerBlockEntity {
 
     private DefaultedList<ItemStack> inventory;
 
+    @SuppressWarnings("WeakerAccess")
     protected LargeFlightCaseBlockEntity(BlockEntityType<?> blockEntityType_1) {
         super(blockEntityType_1);
-        this.inventory = DefaultedList.create(54, ItemStack.EMPTY);
+        this.inventory = DefaultedList.create(36, ItemStack.EMPTY);
     }
 
     public LargeFlightCaseBlockEntity() {
@@ -43,12 +44,12 @@ public class LargeFlightCaseBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     protected Container createContainer(int var1, PlayerInventory var2) {
-        return GenericContainer.createGeneric9x6(var1, var2, this);
+        return GenericContainer.createGeneric9x4(var1, var2);
     }
 
     @Override
     public int getInvSize() {
-        return 54;
+        return 36;
     }
 
     @Override
