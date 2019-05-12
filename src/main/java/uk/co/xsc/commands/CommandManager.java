@@ -1,13 +1,11 @@
 package uk.co.xsc.commands;
 
 import net.fabricmc.fabric.api.registry.CommandRegistry;
-import net.minecraft.text.StringTextComponent;
-import net.minecraft.text.Style;
 
 import static com.mojang.brigadier.arguments.IntegerArgumentType.getInteger;
 import static com.mojang.brigadier.arguments.IntegerArgumentType.integer;
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+import static net.minecraft.server.command.CommandManager.argument;
+import static net.minecraft.server.command.CommandManager.literal;
 
 
 public class CommandManager {
